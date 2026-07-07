@@ -1,0 +1,33 @@
+{
+  "name": "daisy-reminders",
+  "version": "1.0.0",
+  "description": "A cute daily reminder card game for pregnancy and new motherhood.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Peilin-uxd/daisy-reminders.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Peilin-uxd/daisy-reminders/issues"
+  },
+  "homepage": "https://github.com/Peilin-uxd/daisy-reminders#readme",
+  "private": "true",
+  "dependencies": {
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/ios": "^8.4.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.4.1"
+  }
+}
