@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Daisy reminders</title>
+<meta name="description" content="A cute daily reminder card game for pregnancy and new motherhood.">
+<meta name="theme-color" content="#E8A93C">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Daisy">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #FBF1DC;
+    min-height: 100%;
+  }
+  body {
+    font-family: 'Fredoka', sans-serif;
+    color: #4A3410;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    gap: 18px;
+    min-height: 100vh;
+  }
+  .pm-checker {
+    background-image:
+      linear-gradient(45deg, #7C8B3D 25%, transparent 25%),
+      linear-gradient(-45deg, #7C8B3D 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #7C8B3D 75%),
+      linear-gradient(-45deg, transparent 75%, #7C8B3D 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+    background-color: #A9CDE8;
+  }
+  .pm-blob-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    background: #E8A93C;
+    color: #4A3410;
+    border: 2px solid #4A3410;
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    padding: 14px 36px;
+    cursor: pointer;
+    transform: rotate(-2deg);
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .pm-blob-btn:hover { filter: brightness(0.95); transform: rotate(-2deg) scale(1.03); }
+  .pm-blob-btn:active { transform: rotate(-2deg) scale(0.97); }
+  .pm-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    transform: rotate(-1deg);
+  }
+  .pm-tagline {
+    font-size: 13px;
+    color: #7C8B3D;
+    margin: 0;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Daisy reminders, a daily reminder card game for pregnancy and new motherhood</h1>
+
+<svg width="0" height="0" style="position:absolute;">
+<defs>
+<symbol id="pmStar" viewBox="0 0 100 100">
+<path d="M50,5 L56.89,33.37 L81.82,18.18 L66.63,43.11 L95,50 L66.63,56.89 L81.82,81.82 L56.89,66.63 L50,95 L43.11,66.63 L18.18,81.82 L33.37,56.89 L5,50 L33.37,43.11 L18.18,18.18 L43.11,33.37 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+</symbol>
+<symbol id="pmDaisyHead" viewBox="0 0 100 100">
+<circle cx="65" cy="50" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="57.5" cy="62.99" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="42.5" cy="62.99" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="35" cy="50" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="42.5" cy="37.01" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="57.5" cy="37.01" r="17" fill="none" stroke="currentColor" stroke-width="4"/>
+</symbol>
+<symbol id="pmDaisyFull" viewBox="0 0 100 140">
+<circle cx="63" cy="32" r="15" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="56.5" cy="43.26" r="15" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="43.5" cy="43.26" r="15" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="37" cy="32" r="15" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="43.5" cy="20.74" r="15" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="56.5" cy="20.74" r="15" fill="none" stroke="currentColor" stroke-width="4"/>
+<circle cx="45" cy="32" r="2" fill="currentColor"/>
+<circle cx="55" cy="32" r="2" fill="currentColor"/>
+<path d="M42,55 C40,70 38,85 36,100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+<path d="M58,55 C60,70 62,85 64,100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+<path d="M30,102 Q36,108 42,102" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+<path d="M58,102 Q64,108 70,102" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+<path d="M62,38 C75,30 85,20 90,12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+<circle cx="90" cy="12" r="3" fill="currentColor"/>
+</symbol>
+</defs>
+</svg>
+
+<div style="display:flex; gap:8px; margin-top:8px;">
+  <div class="pm-checker" style="width:30px;height:30px;border-radius:6px;transform:rotate(-6deg);border:2px solid #4A3410;"></div>
+  <div style="width:30px;height:30px;border-radius:6px;background:#E8A93C;border:2px solid #4A3410;display:flex;align-items:center;justify-content:center;color:#4A3410;transform:rotate(3deg);"><svg width="18" height="18" viewBox="0 0 100 100" aria-hidden="true"><use href="#pmStar"/></svg></div>
+  <div style="width:30px;height:30px;border-radius:6px;background:#F0A8C6;border:2px solid #4A3410;display:flex;align-items:center;justify-content:center;color:#FBF1DC;transform:rotate(-3deg);"><svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><use href="#pmDaisyHead"/></svg></div>
+</div>
+
+<div style="text-align:center;">
+  <p class="pm-title">Daisy reminders</p>
+  <p class="pm-tagline">A gentle little card for you today</p>
+</div>
+
+<div style="display:flex; align-items:center; gap:6px;">
+  <svg width="14" height="14" viewBox="0 0 100 100" style="color:#E8A93C;" aria-hidden="true"><use href="#pmStar"/></svg>
+  <span id="streakText" style="font-size:13px; font-weight:500; color:#4A3410;">Day 1 of gentle reminders</span>
+</div>
+
+<div style="position:relative; width:250px; height:320px; perspective:1200px;">
+  <div class="pm-checker" style="position:absolute; inset:0; transform:rotate(-7deg); border-radius:18px; border:2px solid #4A3410;"></div>
+  <div class="pm-checker" style="position:absolute; inset:0; transform:rotate(5deg); border-radius:18px; border:2px solid #4A3410;"></div>
+
+  <div id="card" style="position:absolute; inset:0; cursor:pointer;">
+    <div id="cardInner" style="position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
+      <div style="position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; border-radius:18px; border:2px dashed #7C8B3D; background:#FBF1DC; color:#4A3410; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:1.5rem; text-align:center;">
+        <svg width="56" height="78" viewBox="0 0 100 140" style="color:#7C8B3D;" aria-hidden="true"><use href="#pmDaisyFull"/></svg>
+        <div style="font-size:16px; font-weight:600;">Today's reminder</div>
+        <div style="font-size:13px; color:#7C8B3D;">Tap the card to draw one</div>
+      </div>
+      <div id="cardFront" style="position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; border:2px solid #4A3410; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1.75rem; gap:12px;">
+        <svg width="48" height="67" viewBox="0 0 100 140" aria-hidden="true"><use href="#pmDaisyFull"/></svg>
+        <div id="frontTitle" style="font-size:18px; font-weight:600;"></div>
+        <div id="frontBody" style="font-size:14px; line-height:1.6; font-family:-apple-system,sans-serif; font-weight:400;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="drawBtn" class="pm-blob-btn">Draw a card</button>
+<div id="deckCount" style="font-size:12px; font-weight:500; color:#7C8B3D;"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

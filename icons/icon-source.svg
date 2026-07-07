@@ -1,0 +1,19 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="512" height="512" fill="#E8A93C"/>
+<g transform="translate(120.5,66) scale(2.714)">
+<circle cx="63" cy="32" r="15" fill="none" stroke="#FBF1DC" stroke-width="4"/>
+<circle cx="56.5" cy="43.26" r="15" fill="none" stroke="#FBF1DC" stroke-width="4"/>
+<circle cx="43.5" cy="43.26" r="15" fill="none" stroke="#FBF1DC" stroke-width="4"/>
+<circle cx="37" cy="32" r="15" fill="none" stroke="#FBF1DC" stroke-width="4"/>
+<circle cx="43.5" cy="20.74" r="15" fill="none" stroke="#FBF1DC" stroke-width="4"/>
+<circle cx="56.5" cy="20.74" r="15" fill="none" stroke="#FBF1DC" stroke-width="4"/>
+<circle cx="45" cy="32" r="2" fill="#FBF1DC"/>
+<circle cx="55" cy="32" r="2" fill="#FBF1DC"/>
+<path d="M42,55 C40,70 38,85 36,100" fill="none" stroke="#FBF1DC" stroke-width="5" stroke-linecap="round"/>
+<path d="M58,55 C60,70 62,85 64,100" fill="none" stroke="#FBF1DC" stroke-width="5" stroke-linecap="round"/>
+<path d="M30,102 Q36,108 42,102" fill="none" stroke="#FBF1DC" stroke-width="5" stroke-linecap="round"/>
+<path d="M58,102 Q64,108 70,102" fill="none" stroke="#FBF1DC" stroke-width="5" stroke-linecap="round"/>
+<path d="M62,38 C75,30 85,20 90,12" fill="none" stroke="#FBF1DC" stroke-width="5" stroke-linecap="round"/>
+<circle cx="90" cy="12" r="3" fill="#FBF1DC"/>
+</g>
+</svg>
