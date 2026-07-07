@@ -13,12 +13,13 @@
 <meta name="apple-mobile-web-app-title" content="Daisy">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
     margin: 0;
     padding: 0;
     background: #FBF1DC;
-    min-height: 100%;
+    height: 100%;
+    overscroll-behavior: none;
   }
   body {
     font-family: 'Fredoka', sans-serif;
@@ -26,9 +27,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
-    gap: 18px;
-    min-height: 100vh;
+    padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+    height: 100dvh;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .pm-top-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .pm-card-stage {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+  .pm-bottom-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    padding-top: 10px;
+  }
+  .pm-card-wrap {
+    position: relative;
+    width: min(64vw, 48vh, 300px);
+    aspect-ratio: 25 / 32;
+    max-height: 100%;
+    perspective: 1200px;
   }
   .pm-checker {
     background-image:
@@ -44,6 +77,8 @@
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
     font-size: 16px;
+    min-height: 48px;
+    min-width: 200px;
     background: #E8A93C;
     color: #4A3410;
     border: 2px solid #4A3410;
@@ -56,7 +91,7 @@
   .pm-blob-btn:hover { filter: brightness(0.95); transform: rotate(-2deg) scale(1.03); }
   .pm-blob-btn:active { transform: rotate(-2deg) scale(0.97); }
   .pm-title {
-    font-size: 22px;
+    font-size: clamp(20px, 6vw, 24px);
     font-weight: 600;
     margin: 0;
     transform: rotate(-1deg);
@@ -105,44 +140,50 @@
 </defs>
 </svg>
 
-<div style="display:flex; gap:8px; margin-top:8px;">
-  <div class="pm-checker" style="width:30px;height:30px;border-radius:6px;transform:rotate(-6deg);border:2px solid #4A3410;"></div>
-  <div style="width:30px;height:30px;border-radius:6px;background:#E8A93C;border:2px solid #4A3410;display:flex;align-items:center;justify-content:center;color:#4A3410;transform:rotate(3deg);"><svg width="18" height="18" viewBox="0 0 100 100" aria-hidden="true"><use href="#pmStar"/></svg></div>
-  <div style="width:30px;height:30px;border-radius:6px;background:#F0A8C6;border:2px solid #4A3410;display:flex;align-items:center;justify-content:center;color:#FBF1DC;transform:rotate(-3deg);"><svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><use href="#pmDaisyHead"/></svg></div>
+<div class="pm-top-group">
+  <div style="display:flex; gap:8px;">
+    <div class="pm-checker" style="width:30px;height:30px;border-radius:6px;transform:rotate(-6deg);border:2px solid #4A3410;"></div>
+    <div style="width:30px;height:30px;border-radius:6px;background:#E8A93C;border:2px solid #4A3410;display:flex;align-items:center;justify-content:center;color:#4A3410;transform:rotate(3deg);"><svg width="18" height="18" viewBox="0 0 100 100" aria-hidden="true"><use href="#pmStar"/></svg></div>
+    <div style="width:30px;height:30px;border-radius:6px;background:#F0A8C6;border:2px solid #4A3410;display:flex;align-items:center;justify-content:center;color:#FBF1DC;transform:rotate(-3deg);"><svg width="20" height="20" viewBox="0 0 100 100" aria-hidden="true"><use href="#pmDaisyHead"/></svg></div>
+  </div>
+
+  <div style="text-align:center;">
+    <p class="pm-title">Daisy reminders</p>
+    <p class="pm-tagline">A gentle little card for you today</p>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:6px;">
+    <svg width="14" height="14" viewBox="0 0 100 100" style="color:#E8A93C; flex-shrink:0;" aria-hidden="true"><use href="#pmStar"/></svg>
+    <span id="streakText" style="font-size:13px; font-weight:500; color:#4A3410;">Day 1 of gentle reminders</span>
+  </div>
 </div>
 
-<div style="text-align:center;">
-  <p class="pm-title">Daisy reminders</p>
-  <p class="pm-tagline">A gentle little card for you today</p>
-</div>
+<div class="pm-card-stage">
+  <div class="pm-card-wrap">
+    <div class="pm-checker" style="position:absolute; inset:0; transform:rotate(-7deg); border-radius:18px; border:2px solid #4A3410;"></div>
+    <div class="pm-checker" style="position:absolute; inset:0; transform:rotate(5deg); border-radius:18px; border:2px solid #4A3410;"></div>
 
-<div style="display:flex; align-items:center; gap:6px;">
-  <svg width="14" height="14" viewBox="0 0 100 100" style="color:#E8A93C;" aria-hidden="true"><use href="#pmStar"/></svg>
-  <span id="streakText" style="font-size:13px; font-weight:500; color:#4A3410;">Day 1 of gentle reminders</span>
-</div>
-
-<div style="position:relative; width:250px; height:320px; perspective:1200px;">
-  <div class="pm-checker" style="position:absolute; inset:0; transform:rotate(-7deg); border-radius:18px; border:2px solid #4A3410;"></div>
-  <div class="pm-checker" style="position:absolute; inset:0; transform:rotate(5deg); border-radius:18px; border:2px solid #4A3410;"></div>
-
-  <div id="card" style="position:absolute; inset:0; cursor:pointer;">
-    <div id="cardInner" style="position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
-      <div style="position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; border-radius:18px; border:2px dashed #7C8B3D; background:#FBF1DC; color:#4A3410; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:1.5rem; text-align:center;">
-        <svg width="56" height="78" viewBox="0 0 100 140" style="color:#7C8B3D;" aria-hidden="true"><use href="#pmDaisyFull"/></svg>
-        <div style="font-size:16px; font-weight:600;">Today's reminder</div>
-        <div style="font-size:13px; color:#7C8B3D;">Tap the card to draw one</div>
-      </div>
-      <div id="cardFront" style="position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; border:2px solid #4A3410; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1.75rem; gap:12px;">
-        <svg width="48" height="67" viewBox="0 0 100 140" aria-hidden="true"><use href="#pmDaisyFull"/></svg>
-        <div id="frontTitle" style="font-size:18px; font-weight:600;"></div>
-        <div id="frontBody" style="font-size:14px; line-height:1.6; font-family:-apple-system,sans-serif; font-weight:400;"></div>
+    <div id="card" style="position:absolute; inset:0; cursor:pointer;">
+      <div id="cardInner" style="position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
+        <div style="position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; border-radius:18px; border:2px dashed #7C8B3D; background:#FBF1DC; color:#4A3410; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:min(3vh,10px); padding:8% 10%; text-align:center;">
+          <svg width="30%" height="34%" viewBox="0 0 100 140" style="color:#7C8B3D;" aria-hidden="true"><use href="#pmDaisyFull"/></svg>
+          <div style="font-size:clamp(14px,4.2vw,16px); font-weight:600;">Today's reminder</div>
+          <div style="font-size:clamp(12px,3.4vw,13px); color:#7C8B3D;">Tap the card to draw one</div>
+        </div>
+        <div id="cardFront" style="position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; border:2px solid #4A3410; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:9% 11%; gap:min(2.6vh,12px);">
+          <svg width="26%" height="30%" viewBox="0 0 100 140" aria-hidden="true"><use href="#pmDaisyFull"/></svg>
+          <div id="frontTitle" style="font-size:clamp(15px,4.6vw,18px); font-weight:600;"></div>
+          <div id="frontBody" style="font-size:clamp(12px,3.6vw,14px); line-height:1.55; font-family:-apple-system,sans-serif; font-weight:400;"></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<button id="drawBtn" class="pm-blob-btn">Draw a card</button>
-<div id="deckCount" style="font-size:12px; font-weight:500; color:#7C8B3D;"></div>
+<div class="pm-bottom-group">
+  <button id="drawBtn" class="pm-blob-btn">Draw a card</button>
+  <div id="deckCount" style="font-size:12px; font-weight:500; color:#7C8B3D;"></div>
+</div>
 
 <script src="app.js"></script>
 </body>

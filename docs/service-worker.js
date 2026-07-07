@@ -1,4 +1,4 @@
-var CACHE_NAME = 'daisy-reminders-v1';
+var CACHE_NAME = 'daisy-reminders-v2';
 var ASSETS = [
   './',
   './index.html',
