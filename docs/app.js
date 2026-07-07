@@ -101,5 +101,11 @@
     window.addEventListener('load', function () {
       navigator.serviceWorker.register('service-worker.js').catch(function () {});
     });
+    var reloadedForUpdate = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (reloadedForUpdate) return;
+      reloadedForUpdate = true;
+      location.reload();
+    });
   }
 })();
